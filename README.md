@@ -25,6 +25,12 @@ $ Na raiz do projeto digite docker compose up -d ou apenas docker compose up par
 
 <br>
 
+<strong> 1 - </strong> Comando para rodar os testes
+```bash
+$ ng test
+```
+
+<br>
 
 # Tecnologias
 
