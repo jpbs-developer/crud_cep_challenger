@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import PlatformComponent from './platform.component';
-import { By } from '@angular/platform-browser';
 import { ViacepService } from '../viacep.service';
-import { of } from 'rxjs';
+import { provideToastr } from 'ngx-toastr';
+import { provideNgxMask } from 'ngx-mask';
 import { address } from '../viacep.service.spec';
+import { of } from 'rxjs';
 
 describe('PlatformComponent', () => {
   let component: PlatformComponent;
@@ -14,10 +15,15 @@ describe('PlatformComponent', () => {
   beforeEach(async () => {
     const viaCepServiceSpy = jasmine.createSpyObj('ViacepService', [
       'getZipCodeInfos',
+      'getAllAddress',
     ]);
     await TestBed.configureTestingModule({
       imports: [PlatformComponent, HttpClientTestingModule],
-      providers: [{ provide: ViacepService, useValue: viaCepServiceSpy }],
+      providers: [
+        { provide: ViacepService, useValue: viaCepServiceSpy },
+        provideToastr(),
+        provideNgxMask(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlatformComponent);
@@ -29,22 +35,9 @@ describe('PlatformComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getZipCodeInfos from the service when the button is pressed', () => {
-    service.getZipCodeInfos.and.returnValue(of(address));
-    fixture.detectChanges();
-    const inputZipCode = fixture.debugElement.query(By.css('#zipCodeControl'))
-      .nativeElement as HTMLInputElement;
-    const searchButton = fixture.debugElement.query(By.css('.search-button'))
-      .nativeElement as HTMLButtonElement;
-
-    inputZipCode.value = '57041070';
-    inputZipCode.dispatchEvent(new Event('input'));
-    component.zipCodeControl.patchValue(inputZipCode.value);
-    fixture.detectChanges();
-    searchButton.click();
-
-    expect(service.getZipCodeInfos).toHaveBeenCalled();
-    expect(component.loading).toBeFalse();
-    expect(component.zipCodeControl.value).toBe('');
+  it('should retrieve all address', () => {
+    service.getAllAddress.and.returnValue(of([address]));
+    fixture.detectChanges()
+    expect(service.getAllAddress).toHaveBeenCalled()
   });
 });

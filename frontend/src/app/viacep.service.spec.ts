@@ -8,6 +8,8 @@ import {
 import { ViacepService } from './viacep.service';
 import { ZipCode } from './zipode';
 import { environment } from '../environments/environment.development';
+import { mockViaCepResponse } from './platform/search/search.component.spec';
+import { provideNgxMask } from 'ngx-mask';
 
 export const address: ZipCode = {
   id: 432432,
@@ -17,7 +19,7 @@ export const address: ZipCode = {
   city: 'Rua X',
   street: 'logradouro',
   state: 'São paulo',
-  number: '232'
+  number: '232',
 };
 
 describe('ViacepService', () => {
@@ -41,16 +43,16 @@ describe('ViacepService', () => {
   it('should return zipcode Infos', () => {
     service.getZipCodeInfos('83647738').subscribe({
       next: (data) => {
-        expect(data).toEqual(address);
-        expect(data?.zipCode).toEqual('83647738');
+        expect(data).toEqual(mockViaCepResponse);
+        expect(data?.cep).toEqual('83647738');
       },
     });
 
     const request = httpTestingController.expectOne(
-      `${environment.api}/83647738/json`
+      `${environment.viaCep}/83647738/json`
     );
     expect(request.request.method).toEqual('GET');
-    request.flush(address);
+    request.flush(mockViaCepResponse);
   });
 
   it(' should return an error when the zip code was not equal to 8 characters', () => {

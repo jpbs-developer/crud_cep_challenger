@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../environments/environment.development';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { ZipCode } from './zipode';
-type ViaCepResponse = {
+export type ViaCepResponse = {
   cep: string;
   logradouro: string;
   complemento: string;

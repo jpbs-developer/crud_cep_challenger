@@ -20,7 +20,7 @@ import { CardInfosComponent } from './card-infos/card-infos.component';
 import { TableInfosComponent } from './table-infos/table-infos.component';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-declare var window: any;
+declare var bootstrap: any;
 @Component({
   selector: 'app-platform',
   standalone: true,
@@ -49,9 +49,7 @@ export default class PlatformComponent implements OnInit {
   formModal: any;
   infoForm: FormGroup;
   public ngOnInit(): void {
-    this.formModal = new window.bootstrap.Modal(
-      document.getElementById('exampleModal')
-    );
+    this.formModal = new bootstrap.Modal(document.getElementById('exampleModal'));
     this.buildInfoControl();
     this.getAllAddress();
   }
@@ -66,10 +64,6 @@ export default class PlatformComponent implements OnInit {
       state: ['', Validators.required],
       number: [''],
     });
-  }
-
-  public getZipCodeInfos(event: ZipCode | null): void {
-    this.zipCode.set(event);
   }
 
   public getAllAddress() {
