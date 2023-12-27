@@ -1,0 +1,46 @@
+<div class="overflow-auto w-100">
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">CEP</th>
+        <th scope="col">RUA</th>
+        <th scope="col">BAIRRO</th>
+        <th scope="col">CIDADE</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">NÚMERO</th>
+        <th scope="col">COMPLMENTO</th>
+        <th scope="col">AÇÃO</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if ( infos.length) { @for (item of infos; track $index) {
+      <tr>
+        <td>{{ item.zipCode }}</td>
+        <td>{{ item.street }}</td>
+        <td>{{ item.neighborhood }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.state }}</td>
+        <td>{{ item.number || "Sem número" }}</td>
+        <td>{{ item.complement || "Sem complemento" }}</td>
+        <td>
+          <button
+            class="btn btn-info me-2"
+            (click)="onUpdate.emit(item)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Atualizar
+          </button>
+          <button class="btn btn-danger" (click)="onDelete.emit(item.id)">
+            Excluir
+          </button>
+        </td>
+      </tr>
+      } }@else {
+      <tr>
+        <td class="text-center py-3" colspan="8">Nenhum dado cadastrado!</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

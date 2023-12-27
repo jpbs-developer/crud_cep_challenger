@@ -1,0 +1,30 @@
+<div class="card my-3">
+  <div class="card-header">Informações obitidadas do cep digitado</div>
+  <div class="card-body">
+    <h5 class="card-title mb-3">
+      CEP procurado: {{ infos?.zipCode ?? "" | mask : "00000-000" }}
+    </h5>
+    <div class="row">
+      <p class="card-text col-md-4">
+        <span class="fw-bold">Rua:</span> {{ infos?.street }}
+      </p>
+      <p class="card-text col-md-4">
+        <span class="fw-bold">Complemento:</span> {{ infos?.complement }}
+      </p>
+      <p class="card-text col-md-4">
+        <span class="fw-bold">Bairro:</span> {{ infos?.neighborhood }}
+      </p>
+      <p class="card-text col-md-4">
+        <span class="fw-bold">Cidade:</span> {{ infos?.city }}
+      </p>
+
+      <p class="card-text col-md-4">
+        <span class="fw-bold">Estado:</span> {{ infos?.state }}
+      </p>
+    </div>
+
+    <a class="btn btn-primary mt-2" (click)="onSave.emit()"
+      >Salvar infomações</a
+    >
+  </div>
+</div>

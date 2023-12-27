@@ -1,0 +1,129 @@
+<section
+  class="p-3 w-100 m-auto text-center d-flex flex-column align-items-center justify-content-center mt-5"
+>
+  <h1>CRUD CEP</h1>
+
+  <app-search (onSearch)="zipCode.set($event)"></app-search>
+
+  @if (zipCode()) {
+  <app-card-infos [infos]="zipCode()" (onSave)="saveInfos()"></app-card-infos>
+  }
+  <div class="w-100">
+    <app-table-infos
+      [infos]="zipCodes()"
+      (onUpdate)="openModalUpdate($event)"
+      (onDelete)="deleteAddress($event)"
+    ></app-table-infos>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade text-start"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Informações</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="infoForm" (submit)="updateAddress()">
+            <div class="mb-3">
+              <label for="cepControl" class="form-label">CEP</label>
+              <input
+                type="text"
+                mask="00000-000"
+                class="form-control"
+                id="cepControl"
+                formControlName="zipCode"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="streetControl" class="form-label">RUA</label>
+              <input
+                type="text"
+                class="form-control"
+                id="streetControl"
+                formControlName="street"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="neighborhoodControl" class="form-label">BAIRRO</label>
+              <input
+                type="text"
+                class="form-control"
+                id="neighborhoodControl"
+                formControlName="neighborhood"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="cityControl" class="form-label">CIDADE</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cityControl"
+                formControlName="city"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="stateControl" class="form-label">ESTADO</label>
+              <input
+                type="text"
+                class="form-control"
+                id="stateControl"
+                formControlName="state"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="numberControl" class="form-label">NÚMERO</label>
+              <input
+                type="text"
+                class="form-control"
+                id="numberControl"
+                formControlName="number"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="complementControl" class="form-label"
+                >COMPLEMENTO</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="complementControl"
+                formControlName="complement"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Fechar
+              </button>
+              <button class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="timer"
+  [fullScreen]="true"
+  ><p style="color: white">Processando...</p></ngx-spinner
+>

@@ -1,0 +1,31 @@
+<div class="d-flex align-items-end">
+    <div class="me-2">
+      <label for="zipCodeControl" class="form-label">Digite o cep</label>
+      <input
+        #inputSearch
+        type="text"
+        class="form-control"
+        id="zipCodeControl"
+        mask="00000-000"
+        [dropSpecialCharacters]="true"
+        [formControl]="zipCodeControl"
+      />
+    </div>
+    <button
+      class="btn btn-primary search-button"
+      type="button"
+      [disabled]="loading || zipCodeControl.invalid"
+      (click)="getZipCodeInfos()"
+    >
+      @if (loading) {
+      <div>
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        Processando...
+      </div>
+      }@else { Buscar }
+    </button>
+  </div>

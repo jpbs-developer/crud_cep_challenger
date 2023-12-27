@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8.2
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'cep_db'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
