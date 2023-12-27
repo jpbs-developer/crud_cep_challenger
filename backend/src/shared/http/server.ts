@@ -6,7 +6,7 @@ import cors from 'cors';
 import AppError from '../errors/AppError';
 import routes from './routes';
 
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
