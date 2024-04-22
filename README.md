@@ -5,7 +5,7 @@
   <img width="auto" height="23em" src="https://img.shields.io/badge/Node.js-323330?style=flat&logo=Node.js&logoColor=white">
   <img width="auto" height="23em" src="https://img.shields.io/badge/Express.js-323330?style=flate&logo=express">
   <img width="auto" height="23em" src="https://img.shields.io/badge/MySql-323330?style=flate&logo=mysql&logoColor=white">
-  <img width="auto" height="23em" src="https://img.shields.io/badge/MySql-323330?style=flate&logo=angular&logoColor=red">
+  <img width="auto" height="23em" src="https://img.shields.io/badge/Angular-323330?style=flate&logo=angular&logoColor=red">
 </p>
 
 - [Executando o projeto](#executando-o-projeto)
